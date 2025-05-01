@@ -1,33 +1,38 @@
 plugins {
-    // id for library
-    // id for maven to publish jar to local repository
+    id 'java-library'
+    id 'maven-publish'
 }
 
 java {
-// provide sourceCompatibility
+    sourceCompatibility = JavaVersion.VERSION_11
 }
 
 repositories {
-// provide repository, where required dependencies are located
+    mavenCentral()
 }
 
 publishing {
     publications {
         maven(MavenPublication) {
-// provide groupId
-// provide artifactId
-// provide version
+            groupId = 'com.epam' as Publication
+            artifactId = 'utils' as Publication
+            version = '1.3.5' as Publication
 
             from components.java
         }
     }
 }
 
-//add Apache Apache Commons Lang 3.10 (or higher) dependency
+dependencies {
+    implementation 'org.apache.commons:commons-lang3:3.10'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
 
 jar {
     manifest {
-        //provide manifest with such attributes as 'Implementation-Title', 'Implementation-Version'
+        attributes 'Implementation-Title':'StringUtils Utility Library',
+                    'Implementation-Version':'1.3.5'
     }
 }
 
