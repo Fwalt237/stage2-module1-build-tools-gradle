@@ -5,6 +5,6 @@ public class StringUtils {
          return isNumeric(str) && Double.parseDouble(str) > 0;//here magic will happen
     }
     private static boolean isNumeric(String str) {
-        return str!=null && str.matches("[0-9.]+");
+        return str != null && str.matches("-?\\d+(\\.\\d+)?");
     }
 }
